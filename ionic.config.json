@@ -1,0 +1,7 @@
+{
+  "name": "blocNotas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
