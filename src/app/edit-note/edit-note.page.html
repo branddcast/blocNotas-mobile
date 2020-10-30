@@ -1,0 +1,66 @@
+<style>
+  :root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+</style>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <form [formGroup]="updateNoteForm" (ngSubmit)="updateForm()" style="padding:10px">
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input formControlName="title" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="description" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Autor</ion-label>
+        <ion-input formControlName="author" type="text" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Categoría</ion-label>
+        <ion-select formControlName="category">
+          <ion-select-option value="Trabajo">Trabajo</ion-select-option>
+          <ion-select-option value="Viajes">Viajes</ion-select-option>
+          <ion-select-option value="Comidas">Comidas</ion-select-option>
+          <ion-select-option value="Desconocido">Desconocido</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="primary" shape="full" expand="block">Actualizar nota</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-fab horizontal="end" vertical="bottom" slot="fixed" style="bottom: 30px; right: 20px">
+  <ion-fab-button color="primary">
+    <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="light" routerLink="/home">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+    <ion-label style="position: relative; z-index: 999; left: -70px; top: 35px; font-size: 10pt; justify-content: flex-end !important;">Inicio</ion-label>
+    <ion-fab-button color="light" routerLink="/add_note">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-label style="position: relative; z-index: 999; left: -70px; top: 35px; font-size: 10pt; justify-content: flex-end !important;">Nueva</ion-label>
+  </ion-fab-list>
+</ion-fab>

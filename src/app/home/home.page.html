@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Notas
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,65 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Notas</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-list>
+      <ion-item-sliding *ngFor="let note of Notes">
+            <ion-row>
+              <ion-col center text-center >
+                <ion-card  class="user-list" color="{{categoryBG(note.category)}}">
+                  <ion-card-header>
+                    <ion-router-link color="dark" href="{{'/show_note/'+note.$key}}">
+                      <ion-card-title style="margin-top: 20px;">{{note.title}}</ion-card-title>
+                    </ion-router-link>
+                    
+                    <div style="position: absolute; right: 8px; top: 8px;">
+                      <ion-router-link color="dark" (click)="deleteNote(note.$key)" style="cursor: pointer;">
+                        <ion-icon name="close" style="zoom:1.5"></ion-icon>
+                      </ion-router-link>
+                    </div>
+                  </ion-card-header>
+                
+                  <ion-card-content >
+                    <div style="color: #222428">
+                      {{note.description.substr(0,100)}}...
+                    </div>
+                  </ion-card-content>
+  
+                  <ion-footer>
+                    <ion-grid>
+                      <ion-row class="ion-justify-content-between">
+                        <ion-col size="auto" text-center>
+                          <ion-router-link color="dark" href="#">
+                            {{note.author}}
+                          </ion-router-link>
+                        </ion-col>
+    
+                        <ion-col size="1" text-center>
+                          <ion-router-link color="dark" href="#">
+                            <ion-icon name="{{category(note.category)}}"></ion-icon>
+                          </ion-router-link>
+                        </ion-col>
+    
+                        <ion-col size="auto" text-center>
+                          <ion-router-link color="dark" href="#">
+                            {{dateFormat(note.created_at)}}
+                          </ion-router-link>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-footer>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+      </ion-item-sliding>
+    </ion-list> 
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="bottom: 30px; right: 20px">
+    <ion-fab-button color="primary" href="add_note">
+    <ion-icon name="add"></ion-icon>
+    </ion-fab-button> 
+  </ion-fab>
 </ion-content>

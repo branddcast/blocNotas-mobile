@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Nota
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nota</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let note of Note">
+            <ion-row>
+              <ion-col center text-center >
+                <ion-card  class="user-list" color="{{categoryBG(note.category)}}">
+                  <ion-card-header>
+                      <ion-card-title style="color: #222428; margin-top: 20px !important;">{{note.title}}</ion-card-title>
+                    
+                    <div style="position: absolute; right: 35px; top: 8px;">
+                      <ion-router-link color="dark" href="{{'edit_note/' + note.$key}}" style="cursor: pointer;">
+                        <ion-icon name="create" style="zoom:1.5"></ion-icon>
+                      </ion-router-link>
+                    </div>
+                    <div style="position: absolute; right: 8px; top: 8px;">
+                      <ion-router-link color="dark" (click)="deleteNote(note.$key)" style="cursor: pointer;">
+                        <ion-icon name="close" style="zoom:1.5"></ion-icon>
+                      </ion-router-link>
+                    </div>
+                  </ion-card-header>
+                
+                  <ion-card-content >
+                    <div style="color: #222428">
+                      {{note.description}}
+                    </div>
+                  </ion-card-content>
+  
+                  <ion-footer>
+                    <ion-grid>
+                      <ion-row class="ion-justify-content-between">
+                        <ion-col size="auto" text-center>
+                          <ion-router-link color="dark" href="#">
+                            {{note.author}}
+                          </ion-router-link>
+                        </ion-col>
+    
+                        <ion-col size="1" text-center>
+                          <ion-router-link color="dark" href="#">
+                            <ion-icon name="{{category(note.category)}}"></ion-icon>
+                          </ion-router-link>
+                        </ion-col>
+    
+                        <ion-col size="auto" text-center>
+                          <ion-router-link color="dark" href="#">
+                            {{dateFormat(note.created_at)}}
+                          </ion-router-link>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-footer>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+      </ion-item-sliding>
+    </ion-list> 
+
+
+</ion-content>
+
+<ion-fab horizontal="end" vertical="bottom" slot="fixed" style="bottom: 30px; right: 20px">
+  <ion-fab-button color="primary">
+    <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="light" routerLink="/home">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+    <ion-label style="position: relative; z-index: 999; left: -70px; top: 35px; font-size: 10pt; justify-content: flex-end !important;">Inicio</ion-label>
+    <ion-fab-button color="light" routerLink="/add_note">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-label style="position: relative; z-index: 999; left: -70px; top: 35px; font-size: 10pt; justify-content: flex-end !important;">Nueva</ion-label>
+  </ion-fab-list>
+</ion-fab>

@@ -22,6 +22,11 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.statusBar.styleBlackTranslucent();
+      this.statusBar.styleLightContent();
+      this.statusBar.isVisible;
+      this.statusBar.styleBlackOpaque();
+      this.statusBar.backgroundColorByHexString('pink');
     });
   }
 }
